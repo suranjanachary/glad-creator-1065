@@ -1,0 +1,10 @@
+package com.masai.model;
+
+
+public class AbstractUser {
+
+	private String username;
+	private String password;
+	private String mobile;
+	private String email;
+}
