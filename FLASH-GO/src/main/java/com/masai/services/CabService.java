@@ -6,14 +6,14 @@ import com.masai.model.Cab;
 
 public interface CabService {
 	
-	public Cab insertCab(Cab cab);
+	public Cab insertCab(Cab cab) throws CabException;
 	
-	public Cab updateCab(Cab cab);
+	public Cab updateCab(Cab cab) throws CabException;
 	
-	public Cab deleteCab(Cab Cab);
+	public Cab deleteCab(Cab Cab) throws CabException;
 	
-	public List<Cab> viewCabsOfType(String carType);
+	public List<Cab> viewCabsOfType(String carType) throws CabException;
 	
-	public Integer countCabsOfType(String carType);
+	public Integer countCabsOfType(String carType) throws CabException;
 
 }

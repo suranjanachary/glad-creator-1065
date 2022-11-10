@@ -31,9 +31,11 @@ public class TripBookingServiceImp implements TripBookingService {
 	}
 
 	@Override
-	public TripBooking calculateBill(Integer customerId) {
+	public TripBooking calculateBill(Integer customerId) throws TripBookingException {
 		
 		return null;
 	}
+
+	
 
 }
