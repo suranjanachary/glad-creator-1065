@@ -14,6 +14,6 @@ public interface TripBookingService {
 	
 	public List<TripBooking> viewAllTripsCustomer(Integer customerId) throws TripBookingException;;
 	
-	public TripBooking calculateBill(Integer customerId);
+	public TripBooking calculateBill(Integer customerId) throws TripBookingException;;
 	
 }

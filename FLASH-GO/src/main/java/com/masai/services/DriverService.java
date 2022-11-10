@@ -6,14 +6,14 @@ import com.masai.model.Driver;
 
 public interface DriverService {
 	
-	public Supplier insertDriver(Driver driver);
+	public Supplier insertDriver(Driver driver) throws DriverException;
 	
-	public Supplier updateDriver(Driver driver);
+	public Supplier updateDriver(Driver driver) throws DriverException;
 	
-	public Supplier deleteDriver(Integer driverId);
+	public Supplier deleteDriver(Integer driverId) throws DriverException;
 	
-	public List<Driver> viewBestDrivers();
+	public List<Driver> viewBestDrivers() throws DriverException;
 	
-	public Driver viewDriver(Integer driverId);
+	public Driver viewDriver(Integer driverId) throws DriverException;
 	
 }
