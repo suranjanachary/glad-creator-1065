@@ -2,6 +2,7 @@ package com.masai.services;
 
 import java.util.List;
 
+import com.masai.exception.TripBookingException;
 import com.masai.model.TripBooking;
 
 public interface TripBookingService {

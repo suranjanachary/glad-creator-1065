@@ -16,27 +16,35 @@ public class TripBooking {
 
 	@Id
 	private Integer tripBookingId;
+	
 	@Embedded
 	@OneToOne(cascade = CascadeType.ALL)
 	private Customer customerId;
+	
 	@Embedded
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Driver driver;
+	
 	@NotNull
 	private String fromLocation;
+	
 	@NotNull
 	private String toLocation;
+	
 	@NotNull
 	@Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
 	private LocalDateTime fromDateTime;
+	
 	@NotNull
 	@Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
 	private LocalDateTime toDateTime;
+	
 	@NotNull
 	private boolean status;
-	@NotNull
 	
+	@NotNull
 	private float distanceInKm;
+	
 	@NotNull
 	private float bill;
 	

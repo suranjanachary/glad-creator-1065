@@ -15,8 +15,8 @@ public class Driver extends AbstractUser  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
 	private Integer driverid;
+	
 	@NotNull
 	@Pattern(regexp = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$")
 	private String licenceNo;
@@ -24,6 +24,7 @@ public class Driver extends AbstractUser  {
 	@Embedded
 	@OneToOne(cascade = CascadeType.ALL)
 	private Cab cab;
+	
 	@NotNull
 	@Pattern(regexp = "^[+-]?([0-9]*[.])?[0-9]+$")
 	private float rating;
