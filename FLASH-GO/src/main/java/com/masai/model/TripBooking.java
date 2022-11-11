@@ -16,10 +16,12 @@ public class TripBooking {
 
 	@Id
 	private Integer tripBookingId;
-	@Embedded
-	@OneToOne(cascade = CascadeType.ALL)
-	private Customer customerId;
-	@Embedded
+	
+	private Integer customerId;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Customer customer;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Driver driver;
 	@NotNull
@@ -35,7 +37,6 @@ public class TripBooking {
 	@NotNull
 	private boolean status;
 	@NotNull
-	
 	private float distanceInKm;
 	@NotNull
 	private float bill;
