@@ -3,11 +3,13 @@ package com.masai.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -25,19 +27,16 @@ public class TripBooking {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trip_generator")
 	private Integer tripBookingId;
 	
-<<<<<<< HEAD
 	@Embedded
 	@OneToOne(cascade = CascadeType.ALL)
-	private Customer customerId;
+	private Customer customerIds;
 	
-	@Embedded
-=======
-	private Integer customerId;
+//	@Embedded
+//	private Integer customerId;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Customer customer;
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	private Customer customer;
 	
->>>>>>> 3e9dc1b24bed6257521918280f2498b1dd0631f1
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Driver driver;
 	
@@ -57,10 +56,7 @@ public class TripBooking {
 	
 	@NotNull
 	private boolean status;
-<<<<<<< HEAD
-	
-=======
->>>>>>> 3e9dc1b24bed6257521918280f2498b1dd0631f1
+
 	@NotNull
 	private float distanceInKm;
 	
