@@ -17,8 +17,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AbstractUser {
 
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@NotNull
+	@Pattern(regexp = "^[a-zA-Z0-9]{3,25}", message = "length must be >=3")
 	private String username;
 	
 	@NotNull
