@@ -2,6 +2,7 @@ package com.masai.services;
 
 import java.util.List;
 
+import com.masai.exception.AdminException;
 import com.masai.model.Admin;
 import com.masai.model.TripBooking;
 
