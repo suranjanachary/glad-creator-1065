@@ -2,6 +2,7 @@ package com.masai.services;
 
 import java.util.List;
 
+import com.masai.exception.CustomerException;
 import com.masai.model.Customer;
 
 public interface CustomerService {
