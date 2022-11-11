@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -25,11 +26,7 @@ public class TripBooking {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trip_generator")
 	private Integer tripBookingId;
 	
-//	@Embedded
-//	@OneToOne(cascade = CascadeType.ALL)
-//	private Customer customerId;
-	
-	@Embedded
+	@OneToOne(cascade = CascadeType.ALL)
 	private Integer customerId;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
