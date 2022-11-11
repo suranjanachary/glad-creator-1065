@@ -4,16 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Customer extends AbstractUser {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customerId;
@@ -21,23 +29,4 @@ public class Customer extends AbstractUser {
 	@OneToMany(cascade = CascadeType.ALL)
 	List<TripBooking> tripList =  new ArrayList<>();
 	
-	public Customer() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public Integer getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
-	}
-
-	@Override
-	public String toString() {
-		return "Customer [customerId=" + customerId + "]";
-	}
-	
-	
-
 }

@@ -15,9 +15,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masai.exception.AdminException;
+import com.masai.exception.CustomerException;
+import com.masai.exception.TripBookingException;
 import com.masai.model.Admin;
+import com.masai.model.Customer;
 import com.masai.model.TripBooking;
 import com.masai.services.AdminService;
+import com.masai.services.CabService;
+import com.masai.services.DriverService;
 import com.masai.services.TripBookingService;
 
 @RestController
@@ -25,6 +31,13 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private CabService cabService;
+	
+	@Autowired
+	private DriverService driverServices;
+	
 	@Autowired
 	private TripBookingService tbService;
 		
@@ -57,8 +70,8 @@ public class AdminController {
 		}
 		
 		@GetMapping("/getcustomerbyid/{id}")
-		public ResponseEntity<Customer> getEmployeeByAddAndNameHandler(@PathVariable Integer id) throws CustomerException{
-			Customer customerdata = cusService.viewCustomer(id);
+		public ResponseEntity<Customer> getCustByIdHandler(@PathVariable Integer id) throws CustomerException{
+			Customer customerdata = .;
 			
 		   return new ResponseEntity<Customer>(customerdata,HttpStatus.OK);
 		}

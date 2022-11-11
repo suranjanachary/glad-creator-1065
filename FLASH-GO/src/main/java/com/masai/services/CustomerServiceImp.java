@@ -88,13 +88,13 @@ public class CustomerServiceImp implements CustomerService {
 
 	//login part
 	
-//	@Override
-//	public Customer validateCustomer(String username, String password) throws CustomerException {
-//		
-//		
-//		
-//		return null;
-//	}
+	@Override
+	public Customer validateCustomer(String username, String password) throws CustomerException {
+		
+		
+		
+		return null;
+	}
 
 }
 
