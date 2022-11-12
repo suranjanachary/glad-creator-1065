@@ -55,11 +55,7 @@ public class TripBooking {
 	
 	@NotNull
 	private boolean status;
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 91cb307362d517c35e3d60276583d70c5b599224
 	@NotNull
 	private float distanceInKm;
 	
