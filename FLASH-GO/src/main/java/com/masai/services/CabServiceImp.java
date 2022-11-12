@@ -6,6 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.masai.exception.CabException;
 import com.masai.exception.DriverException;
 import com.masai.model.Cab;
@@ -18,10 +21,19 @@ public class CabServiceImp implements CabService {
 	@Autowired
 	private CabDao cDao;
 
+	@Autowired
+	private CabDao cdao;
 	
+	@Autowired
+	private DriverDao ddao;
 	
 	@Override
 	public Cab insertCab(Cab cab) throws CabException {
+		Cab c= cdao.save(cab);
+		
+		if(c==null) {
+			throw new CabException("Null value can't be inserted to register a cab");
+		}
 		
 		Cab c = cDao.save(cab);
 		
