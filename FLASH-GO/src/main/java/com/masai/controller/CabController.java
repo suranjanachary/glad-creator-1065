@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masai.exception.CabException;
 import com.masai.model.Cab;
 import com.masai.model.Customer;
 import com.masai.services.CabService;
