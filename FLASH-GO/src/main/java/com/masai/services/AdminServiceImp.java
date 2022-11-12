@@ -123,7 +123,7 @@ public class AdminServiceImp implements AdminService {
 	public List<TripBooking> getAllTripsForDays(Integer customerId, LocalDateTime fromDate, LocalDateTime toDate)
 			throws AdminException {
 		
-		List<TripBooking> listOfBookingBetweenDay = tripBookingDao.getAllTripBookingByDayWise(customerId,fromDate,toDate);
+		List<TripBooking> listOfBookingBetweenDay = tripBookingDao.getAllTripBetweenDate(customerId,fromDate,toDate);
 		
 		if(!listOfBookingBetweenDay.isEmpty()) {
 			
