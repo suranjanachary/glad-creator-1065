@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.masai.exception.CustomerException;
 import com.masai.model.Customer;
 import com.masai.repository.CustomerDao;
-
+@Service
 public class CustomerServiceImp implements CustomerService {
 	
 	@Autowired
