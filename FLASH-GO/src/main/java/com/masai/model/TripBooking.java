@@ -26,12 +26,17 @@ public class TripBooking {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trip_generator")
 	private Integer tripBookingId;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Customer customerIds;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	private Customer customerIds;
 	
+
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Customer customer;
+
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	private Customer customer;
-//	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Driver driver;
 	
@@ -51,7 +56,7 @@ public class TripBooking {
 	
 	@NotNull
 	private boolean status;
-	
+
 	@NotNull
 	private float distanceInKm;
 	

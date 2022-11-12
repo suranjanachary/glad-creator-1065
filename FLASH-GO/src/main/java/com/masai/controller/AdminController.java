@@ -60,6 +60,7 @@ public class AdminController {
 		}
 		
 		
+
 		@GetMapping("/viewalltripsbycid/{id}")
 		public ResponseEntity<List<TripBooking>> getAllTripsHandler(@PathVariable Integer id) throws AdminException{
 			List<TripBooking> trips = adminService.getAllTrips(id);
