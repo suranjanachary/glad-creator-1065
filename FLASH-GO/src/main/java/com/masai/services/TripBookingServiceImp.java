@@ -3,12 +3,15 @@ package com.masai.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.masai.exception.TripBookingException;
 import com.masai.model.Cab;
 import com.masai.model.Driver;
 import com.masai.model.TripBooking;
 import com.masai.repository.TripBookingDao;
 
+@Service
 public class TripBookingServiceImp implements TripBookingService {
 	
 	TripBookingDao tripBookingDao;
