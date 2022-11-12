@@ -69,11 +69,11 @@ public class AdminController {
 			return new ResponseEntity<List<TripBooking>>(trips,HttpStatus.OK);
 		}
 		
-		@GetMapping("/getcustomerbyid/{id}")
-		public ResponseEntity<Customer> getCustByIdHandler(@PathVariable Integer id) throws CustomerException{
-			Customer customerdata = .;
-			
-		   return new ResponseEntity<Customer>(customerdata,HttpStatus.OK);
-		}
-
+//		@GetMapping("/getcustomerbyid/{id}")
+//		public ResponseEntity<Customer> getCustByIdHandler(@PathVariable Integer id) throws CustomerException{
+//			Customer customerdata = .;
+//			
+//		   return new ResponseEntity<Customer>(customerdata,HttpStatus.OK);
+//		}
+ 
 }
