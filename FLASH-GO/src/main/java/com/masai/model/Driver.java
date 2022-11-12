@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Driver extends AbstractUser  {
+public class Driver extends User  {
 
 	@Id
 	@SequenceGenerator(name="driver_generator", sequenceName = "driver_seq", allocationSize=50)

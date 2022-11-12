@@ -1,21 +1,20 @@
 package com.masai.model;
 
-import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AbstractUser {
+@MappedSuperclass
+public abstract class User {
 
 	@NotNull
 	@Pattern(regexp = "^[a-zA-Z0-9]{3,25}", message = "length must be >=3")
