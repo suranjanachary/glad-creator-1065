@@ -18,6 +18,8 @@ public class CabServiceImp implements CabService {
 	@Autowired
 	private CabDao cDao;
 
+	
+	
 	@Override
 	public Cab insertCab(Cab cab) throws CabException {
 		
