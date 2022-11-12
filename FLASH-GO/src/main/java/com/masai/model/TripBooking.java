@@ -27,7 +27,6 @@ public class TripBooking {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trip_generator")
 	private Integer tripBookingId;
 	
-	@Embedded
 	@OneToOne(cascade = CascadeType.ALL)
 	private Customer customerIds;
 	
