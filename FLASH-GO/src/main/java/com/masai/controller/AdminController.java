@@ -68,7 +68,7 @@ public class AdminController {
 		}
 		
 		@GetMapping("/gettripscabwise")
-		public ResponseEntity<List<TripBooking>> getCustByIdHandler() throws CustomerException{
+		public ResponseEntity<List<TripBooking>> getCustByIdHandler() throws AdminException{
 			List<TripBooking> trips = adminService.getTripsCabwise();
 			
 		   return new ResponseEntity<List<TripBooking>>(trips,HttpStatus.OK);
