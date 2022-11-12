@@ -8,4 +8,5 @@ public interface AdminSignupService {
 	public Admin signupAdmin(Admin admin);
 	
 	public Admin updateAdmin(Admin admin,String key) throws AdminException;
+	
 }
