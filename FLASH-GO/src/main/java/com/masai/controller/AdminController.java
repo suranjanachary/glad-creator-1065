@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.exception.AdminException;
 import com.masai.exception.CustomerException;
-import com.masai.exception.TripBookingException;
 import com.masai.model.Admin;
-import com.masai.model.Customer;
 import com.masai.model.TripBooking;
 import com.masai.services.AdminService;
 import com.masai.services.CabService;
@@ -62,18 +60,19 @@ public class AdminController {
 		}
 		
 		
-		@GetMapping("/viewalltripsbycid")
-		public ResponseEntity<List<TripBooking>> getAllTripsHandler(@PathVariable Integer id) throws TripBookingException{
-			List<TripBooking> trips = adminService.getAllTrips();
+
+		@GetMapping("/viewalltripsbycid/{id}")
+		public ResponseEntity<List<TripBooking>> getAllTripsHandler(@PathVariable Integer id) throws AdminException{
+			List<TripBooking> trips = adminService.getAllTrips(id);
 			
 			return new ResponseEntity<List<TripBooking>>(trips,HttpStatus.OK);
 		}
 		
-//		@GetMapping("/getcustomerbyid/{id}")
-//		public ResponseEntity<Customer> getCustByIdHandler(@PathVariable Integer id) throws CustomerException{
-//			Customer customerdata = .;
-//			
-//		   return new ResponseEntity<Customer>(customerdata,HttpStatus.OK);
-//		}
- 
+		@GetMapping("/gettripscabwise")
+		public ResponseEntity<List<TripBooking>> getCustByIdHandler() throws CustomerException{
+			List<TripBooking> trips = adminService.getTripsCabwise();
+			
+		   return new ResponseEntity<List<TripBooking>>(trips,HttpStatus.OK);
+		}
+
 }

@@ -3,7 +3,6 @@ package com.masai.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,15 +26,17 @@ public class TripBooking {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trip_generator")
 	private Integer tripBookingId;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Customer customerIds;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	private Customer customerIds;
 	
-//	@Embedded
-//	private Integer customerId;
+
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Customer customer;
+
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	private Customer customer;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Driver driver;
 	
