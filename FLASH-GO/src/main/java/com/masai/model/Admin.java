@@ -4,35 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-public class Admin extends AbstractUser {
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class Admin extends User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name="admin_generator", sequenceName = "admin_generator", allocationSize=100)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "admin_generator")
 	private Integer adminId;
-	
-	public Admin() {
-		// TODO Auto-generated constructor stub
-	}
-
-	
-
-	public Integer getAdminId() {
-		return adminId;
-	}
-
-	public void setAdminId(Integer adminId) {
-		this.adminId = adminId;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "Admin [adminId=" + adminId + "]";
-	}
-	
-	
-	
+		
 }
