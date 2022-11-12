@@ -15,13 +15,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-//@Data
-public class Driver extends AbstractUser  {
+@Data
+public class Driver extends User  {
 
 	@Id
 	@SequenceGenerator(name="driver_generator", sequenceName = "driver_seq", allocationSize=50)
@@ -34,6 +35,7 @@ public class Driver extends AbstractUser  {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Cab cab;
+	
 	
 	@NotNull
 	@Pattern(regexp = "^[+-]?([0-9]*[.])?[0-9]+$")

@@ -18,3 +18,10 @@ public interface CabService {
 	public Integer countCabsOfType(String carType) throws CabException;
 
 }
+
+
+
+
+
+
+

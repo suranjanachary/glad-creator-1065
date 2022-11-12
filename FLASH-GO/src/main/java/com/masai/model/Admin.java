@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-//@Data
-public class Admin extends AbstractUser {
+@Data
+public class Admin extends User {
 
 	@Id
 	@SequenceGenerator(name="admin_generator", sequenceName = "admin_generator", allocationSize=100)
