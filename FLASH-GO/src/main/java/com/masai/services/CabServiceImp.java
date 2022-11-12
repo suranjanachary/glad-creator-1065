@@ -7,6 +7,8 @@ import com.masai.model.Cab;
 
 public class CabServiceImp implements CabService {
 
+	
+	
 	@Override
 	public Cab insertCab(Cab cab) throws CabException {
 		
