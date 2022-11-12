@@ -11,7 +11,7 @@ public interface CabService {
 	
 	public Cab updateCab(Cab cab) throws CabException;
 	
-	public Cab deleteCab(Cab Cab) throws CabException;
+	public Cab deleteCab(Integer id) throws CabException;
 	
 	public List<Cab> viewCabsOfType(String carType) throws CabException;
 	
