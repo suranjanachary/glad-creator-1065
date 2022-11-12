@@ -2,6 +2,7 @@ package com.masai.services;
 
 import java.util.List;
 
+import com.masai.exception.CabException;
 import com.masai.model.Cab;
 
 public interface CabService {
@@ -17,3 +18,10 @@ public interface CabService {
 	public Integer countCabsOfType(String carType) throws CabException;
 
 }
+
+
+
+
+
+
+

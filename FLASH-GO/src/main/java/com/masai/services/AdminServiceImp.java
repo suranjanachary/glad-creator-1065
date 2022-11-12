@@ -1,5 +1,6 @@
 package com.masai.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,25 @@ public class AdminServiceImp implements AdminService {
 
 	@Override
 	public List<TripBooking> getTripsCabwise() {
+		
+		return null;
+	}
+
+	@Override
+	public List<TripBooking> getTripsCustomerWise() throws AdminException {
+		
+		return null;
+	}
+
+	@Override
+	public List<TripBooking> getTripsDateWise() throws AdminException {
+		
+		return null;
+	}
+
+	@Override
+	public List<TripBooking> getAllTripsForDays(Integer customerId, LocalDateTime fromDate, LocalDateTime toDate)
+			throws AdminException {
 		
 		return null;
 	}
