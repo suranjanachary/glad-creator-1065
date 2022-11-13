@@ -24,9 +24,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TripBooking {
 
+	//@SequenceGenerator(name="admin_generator", sequenceName = "admin_generator", allocationSize=100)
 	@Id
-	@SequenceGenerator(name = "trip_generator", sequenceName = "trip_sequence", allocationSize = 50)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trip_generator")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer tripBookingId;
 	
 //	@OneToOne(cascade = CascadeType.ALL)

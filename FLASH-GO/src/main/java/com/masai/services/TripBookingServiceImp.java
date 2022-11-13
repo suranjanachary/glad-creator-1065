@@ -33,6 +33,8 @@ public class TripBookingServiceImp implements TripBookingService {
 		Optional<Customer> c= custDao.findById(customerId);
 		Customer c1= c.get();
 		
+		if(c1 == null) throw new TripBookingException("Please enter valid tripBooking details");
+		
 		List<Driver> dlist = driverDao.findAll();
 		
 		for(Driver d:dlist) {
@@ -40,21 +42,11 @@ public class TripBookingServiceImp implements TripBookingService {
 				tripBooking.setDriver(d);
 				break;
 			}
-			else if (d.getTripList().size()==1) {
-				tripBooking.setDriver(d);
-				break;
-			}
-			else {
-				tripBooking.setDriver(d);
-				break;
-			}
-			
-			
 		}
-		
 		tripBooking.setCustomer(c1);
+		tripBooking.setBill((float) (tripBooking.getDriver().getCab().getPerKmRate()) * (tripBooking.getDistanceInKm()));
 		
-		if(tripBooking == null) throw new TripBookingException("Please enter valid tripBooking details");
+		
 			
 			tripBookingDao.save(tripBooking);
 			
@@ -156,21 +148,17 @@ public class TripBookingServiceImp implements TripBookingService {
 		}
 		
 		boolean flag= false;
-		TripBooking t=null;
 		
 		for(TripBooking tb3:listtb) {	
 			if(tb3.getTripBookingId()==tripId) {
-
-				tb3.setBill((float) (tb3.getDriver().getCab().getPerKmRate() * tb3.getDistanceInKm()));
 				flag=true;
-				t=tb3;
-				return t;
+				return tb3;
 			}
 		}
 	
 		if(flag==false) throw new TripBookingException( " Trip booking id is invalid " + tripId);
 			
-		return t;
+		return null;
 			
 		
 		
