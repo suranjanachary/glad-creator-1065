@@ -33,7 +33,7 @@ public class Driver extends User  {
 	private Integer driverid;
 	
 	@NotNull
-	@Pattern(regexp = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$")
+	//@Pattern(regexp = "^(([A-Z]{2}[0-9]{4})$")
 	private String licenceNo;
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -41,9 +41,9 @@ public class Driver extends User  {
 	
 	
 	@NotNull
-	@Pattern(regexp = "^[+-]?([0-9]*[.])?[0-9]+$")
+	//@Pattern(regexp = "^[+-]?([0-9]*[.])?[0-9]+$")
 	private float rating;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "driver")
 	List<TripBooking> tripList =  new ArrayList<>();
 }

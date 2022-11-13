@@ -24,10 +24,10 @@ public class TripBookingController {
 	@Autowired
 	private TripBookingService tbs;
 	
-	@PostMapping("/book/trip")
-	public ResponseEntity<TripBooking> regTripBookingHandler (@Valid @RequestBody TripBooking tripbooking) throws TripBookingException{
+	@PostMapping("/book/trip/{cid}")
+	public ResponseEntity<TripBooking> regTripBookingHandler (@Valid @RequestBody TripBooking tripbooking,@PathVariable Integer cid) throws TripBookingException{
 		
-		 TripBooking tb = tbs.insertTripBooking(tripbooking);
+		 TripBooking tb = tbs.insertTripBooking(tripbooking,cid);
 		 return new ResponseEntity<TripBooking>(tb, HttpStatus.CREATED);
 	}
 	
@@ -53,9 +53,9 @@ public class TripBookingController {
 		return new ResponseEntity<List<TripBooking>>(trips,HttpStatus.OK);
 	}
 	
-	@GetMapping("/get/bill/{id}")
-	public ResponseEntity<TripBooking> getBillHandler(@PathVariable Integer id) throws TripBookingException{
-		TripBooking bill = tbs.calculateBill(id);
+	@GetMapping("/get/bill/{id}/{tripId}")
+	public ResponseEntity<TripBooking> getBillHandler(@PathVariable Integer id,@PathVariable Integer tripId) throws TripBookingException{
+		TripBooking bill = tbs.calculateBill(id, tripId);
 		
 		return new ResponseEntity<TripBooking>(bill,HttpStatus.OK);
 	}

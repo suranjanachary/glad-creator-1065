@@ -3,30 +3,63 @@ package com.masai.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.masai.exception.TripBookingException;
 import com.masai.model.Cab;
+import com.masai.model.Customer;
 import com.masai.model.Driver;
 import com.masai.model.TripBooking;
+import com.masai.repository.CustomerDao;
+import com.masai.repository.DriverDao;
 import com.masai.repository.TripBookingDao;
 
+@Service
 public class TripBookingServiceImp implements TripBookingService {
 	
-	TripBookingDao tripBookingDao;
+	@Autowired
+	private TripBookingDao tripBookingDao;
+	
+	@Autowired
+	private CustomerDao custDao;
+	
+	@Autowired
+	private DriverDao driverDao;
 
 	@Override
-	public TripBooking insertTripBooking(TripBooking tripBooking) throws TripBookingException {
+	public TripBooking insertTripBooking(TripBooking tripBooking, Integer customerId) throws TripBookingException {
 		
-		if(tripBooking != null) {
+		Optional<Customer> c= custDao.findById(customerId);
+		Customer c1= c.get();
+		
+		List<Driver> dlist = driverDao.findAll();
+		
+		for(Driver d:dlist) {
+			if(d.getTripList().size()==0) {
+				tripBooking.setDriver(d);
+				break;
+			}
+			else if (d.getTripList().size()==1) {
+				tripBooking.setDriver(d);
+				break;
+			}
+			else {
+				tripBooking.setDriver(d);
+				break;
+			}
+			
+			
+		}
+		
+		tripBooking.setCustomer(c1);
+		
+		if(tripBooking == null) throw new TripBookingException("Please enter valid tripBooking details");
 			
 			tripBookingDao.save(tripBooking);
 			
 			return tripBooking;
-
-		}else {
-			
-			throw new TripBookingException("Please enter valid tripBooking details");
-		}
-		
+	
 	}
 
 	@Override
@@ -34,7 +67,14 @@ public class TripBookingServiceImp implements TripBookingService {
 		
 		Optional<TripBooking> opt = tripBookingDao.findById(tripBooking.getTripBookingId());
 		
+		
 		if(opt.isPresent()) {
+			
+			
+			 tripBooking.setCustomer(opt.get().getCustomer());
+			 tripBooking.setDriver(opt.get().getDriver());
+			 
+			 
 			
 			TripBooking updatedTripBooking = tripBookingDao.save(tripBooking);
 			
@@ -54,6 +94,25 @@ public class TripBookingServiceImp implements TripBookingService {
 		
 		if(opt.isPresent()) {
 			
+		List<TripBooking> triplist = opt.get().getDriver().getTripList();
+			
+		for(TripBooking tb:triplist) {	
+			if(tb.getTripBookingId()==tripBookingId) {
+				triplist.remove(tb);
+			}
+		}
+		
+		
+		
+		List<TripBooking> triplist2 = opt.get().getCustomer().getTripList();
+		
+		for(TripBooking tb2:triplist2) {	
+			if(tb2.getTripBookingId()==tripBookingId) {
+				triplist2.remove(tb2);
+			}
+		}
+		
+		
 			tripBookingDao.delete(opt.get());
 			
 			return opt.get();
@@ -68,11 +127,12 @@ public class TripBookingServiceImp implements TripBookingService {
 	@Override
 	public List<TripBooking> viewAllTripsCustomer(Integer customerId) throws TripBookingException {
 		
-		List<TripBooking>listOfTripBookings = tripBookingDao.getAllTripBookingByTripId(customerId);
+		Optional<Customer>c = custDao.findById(customerId);
 		
-		if(!listOfTripBookings.isEmpty()) {
+		
+		if(c.get().getTripList().size()>0) {
 			
-			return listOfTripBookings;
+			return c.get().getTripList();
 		
 		}else {
 			
@@ -83,31 +143,36 @@ public class TripBookingServiceImp implements TripBookingService {
 	}
 
 	@Override
-	public TripBooking calculateBill(Integer customerId) throws TripBookingException {
+	public TripBooking calculateBill(Integer customerId, Integer tripId ) throws TripBookingException {
 		
-		List<TripBooking> listOfTripBookings = tripBookingDao.getAllTripBookingByTripId(customerId);
+
+		Optional<Customer> cu = custDao.findById(customerId);
 		
-		if(!listOfTripBookings.isEmpty()) {
+		List<TripBooking> listtb = cu.get().getTripList();
+		
+		if(listtb.size()==0) {
 			
-			TripBooking customerRecentTripBooking = listOfTripBookings.get(listOfTripBookings.size()-1);
-			
-			float distanceInKm = customerRecentTripBooking.getDistanceInKm();
-			
-			Driver driver = customerRecentTripBooking.getDriver();
-			
-			Cab cab = driver.getCab();
-			
-			float perKmRate = cab.getPerKmRate();
-			
-			float finalBill = distanceInKm * perKmRate;
-			
-			customerRecentTripBooking.setBill(finalBill);
-			
-			return customerRecentTripBooking;
-			
-		}else {
-			throw new TripBookingException("Invalid customer id " + customerId);
+			throw new TripBookingException("There is no tripBooking to fetch with is customer id " + customerId);
 		}
+		
+		boolean flag= false;
+		TripBooking t=null;
+		
+		for(TripBooking tb3:listtb) {	
+			if(tb3.getTripBookingId()==tripId) {
+
+				tb3.setBill((float) (tb3.getDriver().getCab().getPerKmRate() * tb3.getDistanceInKm()));
+				flag=true;
+				t=tb3;
+				return t;
+			}
+		}
+	
+		if(flag==false) throw new TripBookingException( " Trip booking id is invalid " + tripId);
+			
+		return t;
+			
+		
 		
 	}
 

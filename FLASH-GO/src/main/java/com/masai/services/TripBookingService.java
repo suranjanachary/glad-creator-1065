@@ -7,7 +7,9 @@ import com.masai.model.TripBooking;
 
 public interface TripBookingService {
 	
-	public TripBooking insertTripBooking(TripBooking tripBooking) throws TripBookingException;
+	public TripBooking insertTripBooking(TripBooking tripBooking, Integer customerId) throws TripBookingException;
+	
+	
 	
 	public TripBooking updateTripBooking(TripBooking tripBooking) throws TripBookingException;
 	
@@ -15,6 +17,6 @@ public interface TripBookingService {
 	
 	public List<TripBooking> viewAllTripsCustomer(Integer customerId) throws TripBookingException;;
 	
-	public TripBooking calculateBill(Integer customerId) throws TripBookingException;;
+	public TripBooking calculateBill(Integer customerId, Integer tripId) throws TripBookingException;;
 	
 }
