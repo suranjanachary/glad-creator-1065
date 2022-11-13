@@ -4,15 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.masai.exception.CustomerException;
 import com.masai.model.Customer;
 import com.masai.repository.CustomerDao;
-
+@Service
 public class CustomerServiceImp implements CustomerService {
 	
 	@Autowired
-	CustomerDao customerDao;
+	private CustomerDao customerDao;
 
 	@Override
 	public Customer insertCustomer(Customer customer) throws CustomerException {
@@ -28,6 +29,8 @@ public class CustomerServiceImp implements CustomerService {
 		Optional<Customer> optional = customerDao.findById(customer.getCustomerId());
 		
 		if(optional.isPresent()) {
+			
+			customer.setTripList(optional.get().getTripList());
 			
 			Customer updatedCustomer = customerDao.save(customer);
 			

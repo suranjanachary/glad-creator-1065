@@ -5,13 +5,19 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.masai.exception.AdminException;
 import com.masai.model.Admin;
+import com.masai.model.Customer;
+import com.masai.model.Driver;
 import com.masai.model.TripBooking;
 import com.masai.repository.AdminDao;
+import com.masai.repository.CustomerDao;
+import com.masai.repository.DriverDao;
 import com.masai.repository.TripBookingDao;
 
+@Service
 public class AdminServiceImp implements AdminService {
 	
 	@Autowired
@@ -19,6 +25,12 @@ public class AdminServiceImp implements AdminService {
 	
 	@Autowired
 	public TripBookingDao tripBookingDao;
+	
+	@Autowired
+	public CustomerDao custDao;
+
+	@Autowired
+	public DriverDao drivDao;
 
 	@Override
 	public Admin insertAdmin(Admin admin) throws AdminException {
@@ -69,42 +81,36 @@ public class AdminServiceImp implements AdminService {
 	}
 
 	@Override
-	public List<TripBooking> getAllTrips(Integer customerId) throws AdminException {
+	public List<TripBooking> getAllTrips() throws AdminException {
 		
-		List<TripBooking> listOfBooking = tripBookingDao.getAllTripBookingByTripId(customerId);
+		List<TripBooking> c = tripBookingDao.findAll();
 		
-		if(!listOfBooking.isEmpty()) {
-			return listOfBooking;
-		}else {
-			throw new AdminException("Please enter valid customer Id " + customerId);
-		}
-		
+		if(c.size()==0) throw new AdminException("Trip List is empty");
+			
+	    return c;
 	}
 
 	@Override
-	public List<TripBooking> getTripsCabwise() throws AdminException {
+	public List<TripBooking> getTripsDriverwise(Integer id) throws AdminException {
 		
-		List<TripBooking> listOfBooking = tripBookingDao.getAllTrips();
 		
-		if(!listOfBooking.isEmpty()) {
-			return listOfBooking;
-		}else {
-			throw new AdminException("There is not data to show");
+		Optional<Driver> d = drivDao.findById(id);
+		
+		if(d.get().getTripList().size()==0) throw new AdminException("Please enter valid driver id");
+			
+	    return d.get().getTripList();
+			
 		}
-	}
+	
 
 	@Override
-	public List<TripBooking> getTripsCustomerWise() throws AdminException {
+	public List<TripBooking> getTripsCustomerWise(Integer customerId) throws AdminException {
 		
-		List<TripBooking> listOfBooking = tripBookingDao.getAllTrips();
+Optional<Customer> c = custDao.findById(customerId);
 		
-		if(!listOfBooking.isEmpty()) {
-			return listOfBooking;
+		if(c.get().getTripList().size()==0) throw new AdminException("Please enter valid customer Id " + customerId);
 			
-		}else {
-			throw new AdminException("There is not data to show");
-			
-		}
+	    return c.get().getTripList();
 	}
 
 	@Override
@@ -123,7 +129,7 @@ public class AdminServiceImp implements AdminService {
 	public List<TripBooking> getAllTripsForDays(Integer customerId, LocalDateTime fromDate, LocalDateTime toDate)
 			throws AdminException {
 		
-		List<TripBooking> listOfBookingBetweenDay = tripBookingDao.getAllTripBookingByDayWise(customerId,fromDate,toDate);
+		List<TripBooking> listOfBookingBetweenDay = tripBookingDao.getAllTripBetweenDate(customerId,fromDate,toDate);
 		
 		if(!listOfBookingBetweenDay.isEmpty()) {
 			

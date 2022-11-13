@@ -22,11 +22,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Customer extends User {
 	
+	//@SequenceGenerator(name="admin_generator", sequenceName = "admin_generator", allocationSize=100)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customerId;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "customer")
 	List<TripBooking> tripList =  new ArrayList<>();
 	
 }

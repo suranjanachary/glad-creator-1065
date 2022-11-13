@@ -16,21 +16,24 @@ import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Setter
+@Getter
 public class Driver extends User  {
 
+	//@SequenceGenerator(name="admin_generator", sequenceName = "admin_generator", allocationSize=100)
 	@Id
-	@SequenceGenerator(name="driver_generator", sequenceName = "driver_seq", allocationSize=50)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "driver_generator")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer driverid;
 	
 	@NotNull
-	@Pattern(regexp = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$")
+	//@Pattern(regexp = "^(([A-Z]{2}[0-9]{4})$")
 	private String licenceNo;
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -38,9 +41,9 @@ public class Driver extends User  {
 	
 	
 	@NotNull
-	@Pattern(regexp = "^[+-]?([0-9]*[.])?[0-9]+$")
+	//@Pattern(regexp = "^[+-]?([0-9]*[.])?[0-9]+$")
 	private float rating;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "driver")
 	List<TripBooking> tripList =  new ArrayList<>();
 }

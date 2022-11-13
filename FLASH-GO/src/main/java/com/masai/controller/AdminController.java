@@ -60,16 +60,17 @@ public class AdminController {
 		}
 		
 		
-		@GetMapping("/viewalltripsbycid/{id}")
-		public ResponseEntity<List<TripBooking>> getAllTripsHandler(@PathVariable Integer id) throws AdminException{
-			List<TripBooking> trips = adminService.getAllTrips(id);
+
+		@GetMapping("/viewalltrips")
+		public ResponseEntity<List<TripBooking>> getAllTripsHandler() throws AdminException{
+			List<TripBooking> trips = adminService.getAllTrips();
 			
 			return new ResponseEntity<List<TripBooking>>(trips,HttpStatus.OK);
 		}
 		
-		@GetMapping("/gettripscabwise")
-		public ResponseEntity<List<TripBooking>> getCustByIdHandler() throws CustomerException{
-			List<TripBooking> trips = adminService.getTripsCabwise();
+		@GetMapping("/gettripsdriverwise/{id}")
+		public ResponseEntity<List<TripBooking>> getCustByIdHandler(@PathVariable Integer id) throws AdminException{
+			List<TripBooking> trips = adminService.getTripsDriverwise(id);
 			
 		   return new ResponseEntity<List<TripBooking>>(trips,HttpStatus.OK);
 		}
