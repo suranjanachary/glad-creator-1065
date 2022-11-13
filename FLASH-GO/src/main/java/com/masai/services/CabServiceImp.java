@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.masai.exception.CabException;
 import com.masai.model.Cab;
+import com.masai.model.CabType;
 import com.masai.repository.CabDao;
 
 @Service
@@ -62,9 +63,9 @@ public class CabServiceImp implements CabService {
 	}
 
 	@Override
-	public List<Cab> viewCabsOfType(String carType) throws CabException {
+	public List<Cab> viewCabsOfType(CabType cabType) throws CabException {
 		
-		List<Cab> cabList = cDao.getCabList(carType);
+		List<Cab> cabList = cDao.getCabList(cabType);
 		
 		if(cabList.size()==0) throw new CabException("Cab Not Found With this Type...!");
 		
@@ -72,9 +73,9 @@ public class CabServiceImp implements CabService {
 	}
 
 	@Override
-	public Integer countCabsOfType(String carType) throws CabException{
+	public Integer countCabsOfType(CabType cabType) throws CabException{
 		
-		Integer num = cDao.countCabByType(carType);
+		Integer num = cDao.countCabByType(cabType);
 		
 		if(num==null) throw new CabException("Cab Not Found With this Type...!");
 		
