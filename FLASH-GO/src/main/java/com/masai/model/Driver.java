@@ -27,9 +27,9 @@ import lombok.Setter;
 @Getter
 public class Driver extends User  {
 
+	//@SequenceGenerator(name="admin_generator", sequenceName = "admin_generator", allocationSize=100)
 	@Id
-	@SequenceGenerator(name="driver_generator", sequenceName = "driver_seq", allocationSize=50)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "driver_generator")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer driverid;
 	
 	@NotNull

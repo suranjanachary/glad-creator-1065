@@ -24,14 +24,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Cab {
 
+	//@SequenceGenerator(name="admin_generator", sequenceName = "admin_generator", allocationSize=100)
 	@Id
-	@SequenceGenerator(name="cab_generator", sequenceName = "cab_seq", allocationSize=50)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cab_generator")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer cabId;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private CabType cabType;
+	private String cabType;
 	
 	@NotNull
 	//@Pattern(regexp = "^(?:0|[1-9]\\d*)(?:\\.(?!.*000)\\d+)?$")

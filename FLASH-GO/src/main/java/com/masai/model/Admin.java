@@ -18,9 +18,9 @@ import lombok.Setter;
 @Setter
 public class Admin extends User {
 
+	//@SequenceGenerator(name="admin_generator", sequenceName = "admin_generator", allocationSize=100)
 	@Id
-	@SequenceGenerator(name="admin_generator", sequenceName = "admin_generator", allocationSize=100)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "admin_generator")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer adminId;
 		
 }
