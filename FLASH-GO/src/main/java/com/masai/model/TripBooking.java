@@ -8,10 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,12 +35,14 @@ public class TripBooking {
 
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Customer customer;
 
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	private Customer customer;
 
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Driver driver;
 	
 	@NotNull
@@ -48,13 +51,13 @@ public class TripBooking {
 	@NotNull
 	private String toLocation;
 	
-	@NotNull
-	@Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
-	private LocalDateTime fromDateTime;
+	//@JsonFormat(pattern = "dd/mm/yyyy")
+	@NotNull(message = "Format should be dd/mm/yyyy ")
+	private String fromDateTime;
 	
-	@NotNull
-	@Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
-	private LocalDateTime toDateTime;
+	//@JsonFormat(pattern = "dd/mm/yyyy")
+	@NotNull(message = "Format should be dd/mm/yyyy ")
+	private String toDateTime;
 	
 	@NotNull
 	private boolean status;
