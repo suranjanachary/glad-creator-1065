@@ -23,9 +23,8 @@ public class DriverServiceImp implements DriverService {
 	@Override
 	public Driver insertDriver(Driver driver) throws DriverException{
 		
-		Driver d = dDao.save(driver);
+		//Driver d = dDao.save(driver);
 		
-		if(d==null) throw new DriverException("Please Fill Proper Details..!");
 		
 		List<Cab> cabList = cDao.findAll();
 		
@@ -33,12 +32,16 @@ public class DriverServiceImp implements DriverService {
 		
 		for(Cab c:cabList) {
 			if(c.isStatus()==false) {
-				d.setCab(c);
+				c.setStatus(true);
+				driver.setCab(c);
+				c.setDriver(driver);
 				break;
 			}
 		}
 		
-		if(d.getCab()==null) throw new DriverException("No Cab Left For Driver..!");
+		if(driver.getCab()==null) throw new DriverException("No Cab Left For Driver..!");
+		Driver d = dDao.save(driver);
+		if(d==null) throw new DriverException("Please Fill Proper Details..!");
 		
 		return d;
 	}

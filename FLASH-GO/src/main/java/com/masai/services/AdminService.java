@@ -15,11 +15,11 @@ public interface AdminService {
 	
 	public Admin deleteAdmin(Integer adminId) throws AdminException;
 	
-	public List<TripBooking> getAllTrips(Integer customerId) throws AdminException;
+	public List<TripBooking> getAllTrips() throws AdminException;
 
-	public List<TripBooking> getTripsCabwise() throws AdminException;
+	public List<TripBooking> getTripsDriverwise(Integer id) throws AdminException;
 	
-	public List<TripBooking> getTripsCustomerWise() throws AdminException;
+	public List<TripBooking> getTripsCustomerWise(Integer customerId) throws AdminException;
 	
 	public List<TripBooking> getTripsDateWise() throws AdminException;
 	

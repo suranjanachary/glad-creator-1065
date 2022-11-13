@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.exception.CabException;
 import com.masai.model.Cab;
+import com.masai.model.CabType;
 import com.masai.model.Customer;
 import com.masai.services.CabService;
 import com.masai.services.CustomerService;
@@ -36,9 +37,9 @@ public class CabController {
 		
 		@PutMapping("/updatecab")
 		public ResponseEntity<Cab> updateCustomerHandler(@Valid @RequestBody Cab c1) throws CabException{
-			Cab updateacb = cabService.updateCab(c1);
+			Cab updatecab = cabService.updateCab(c1);
 			
-			return new ResponseEntity <Cab>(updateacb,HttpStatus.OK);
+			return new ResponseEntity <Cab>(updatecab,HttpStatus.OK);
 		}
 		
 		@DeleteMapping("/deletecab/{id}")
@@ -49,16 +50,16 @@ public class CabController {
 		}
 		
 		
-		@GetMapping("/viewcabsoftype/{carType}")
-		public ResponseEntity<List<Cab>> getCabsByTypeHandler(@PathVariable String carType) throws CabException{
-			List<Cab> cabdata =cabService.viewCabsOfType(carType);
+		@GetMapping("/viewcabsoftype/{cabType}")
+		public ResponseEntity<List<Cab>> getCabsByTypeHandler(@PathVariable CabType cabType) throws CabException{
+			List<Cab> cabdata =cabService.viewCabsOfType(cabType);
 			
 		   return new ResponseEntity<List<Cab>>(cabdata,HttpStatus.OK);
 		}
 		
-		@GetMapping("/viewnoofcabsoftype/{type}")
-		public ResponseEntity<Integer> getTotalCabsofTypeHandler(@PathVariable String carType) throws CabException{
-			Integer cabs = cabService.countCabsOfType(carType);
+		@GetMapping("/viewnoofcabsoftype/{cabtype}")
+		public ResponseEntity<Integer> getTotalCabsofTypeHandler(@PathVariable CabType cabType) throws CabException{
+			Integer cabs = cabService.countCabsOfType(cabType);
 			
 			return new ResponseEntity<Integer>(cabs,HttpStatus.OK);
 		}

@@ -1,6 +1,7 @@
 package com.masai.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.masai.exception.CustomerException;
 import com.masai.model.CurrentUserSession;
@@ -8,6 +9,7 @@ import com.masai.model.Customer;
 import com.masai.repository.CurrentUserSessiondDao;
 import com.masai.repository.CustomerDao;
 
+@Service
 public class CustomerSignupServiceimpl implements CustomerSignupService{
 
 	

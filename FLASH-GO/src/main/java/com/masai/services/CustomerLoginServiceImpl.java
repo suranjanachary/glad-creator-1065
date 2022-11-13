@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.masai.exception.CustomerException;
 import com.masai.model.CurrentUserSession;
@@ -14,6 +15,7 @@ import com.masai.repository.CurrentUserSessiondDao;
 import com.masai.repository.CustomerDao;
 import com.masai.repository.CustomerLoginDao;
 
+@Service
 public class CustomerLoginServiceImpl implements CustomerLoginService{
 	
 	@Autowired
