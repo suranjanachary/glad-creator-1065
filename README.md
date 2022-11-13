@@ -25,6 +25,10 @@ This project is developed by team of 5 Back-end Developers during project week i
 - Cab Management Module
 - Trip Booking Management Module
 
+## Flash-Go
+
+![CW_erd-Page-2](https://github.com/suranjanachary/glad-creator-1065/blob/main/FLASH-GO.png?raw=true)
+
 ## ER Diagram
 
 ![CW_erd-Page-1 drawio](https://user-images.githubusercontent.com/91946820/193461776-93cf301d-6720-41d5-b879-2f65c6eda855.png)
