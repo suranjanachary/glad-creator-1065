@@ -31,12 +31,12 @@ This project is developed by team of 5 Back-end Developers during project week i
 
 ## ER Diagram
 
-![CW_erd-Page-1 drawio](https://user-images.githubusercontent.com/91946820/193461776-93cf301d-6720-41d5-b879-2f65c6eda855.png)
+![CW_erd-Page-1 drawio](https://github.com/suranjanachary/glad-creator-1065/blob/main/model%20class.png?raw=true)
 
 
 ## Service Interface
 
-![CW_erd-Page-2](https://user-images.githubusercontent.com/91946820/193463654-153d1ef7-6a4f-45eb-9651-3da6cf4ee6cf.jpg)
+![CW_erd-Page-2](https://github.com/suranjanachary/glad-creator-1065/blob/main/service%20interface.png?raw=true)
 
 
 
